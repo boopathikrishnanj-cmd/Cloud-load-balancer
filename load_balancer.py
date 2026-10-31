@@ -15,8 +15,10 @@ from collections import deque
 from concurrent.futures import ThreadPoolExecutor
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from urllib.parse import urlparse, parse_qs
+import json, random, threading, time, zlib, urllib.request
+import os
 
-LB_PORT = 8080
+LB_PORT = int(os.environ.get("PORT", 8080))
 ThreadingHTTPServer.request_queue_size = 128
 
 # Backend pool: weight = relative capacity, latency = simulated processing time (s)
